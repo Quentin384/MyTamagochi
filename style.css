@@ -1,3 +1,5 @@
+
+/* Theme classique */
 body {
     display: flex;
     justify-content: center;
@@ -6,14 +8,41 @@ body {
     font-family: sans-serif;
 }
 
+/* Thème sommeil */
+body.sleeping {
+    background-image: url('image/night-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Optionnel : fond personnalisé pendant le sommeil */
+body.sleeping .container {
+    color: white;
+}
+
+/* Bouton réveil visible uniquement pendant le sommeil */
+#wakeUp {
+    margin-top: 20px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border: 1px solid grey;
+    background-color: #0a0f2c;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#wakeUp:hover {
+    background-color: lightblue;
+}
+
 .container {
     width: 80vw;
-    background-color: #FAC898;
     display: flex;
     flex-direction: column;
-    border-radius: 25px;
     margin: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn {
@@ -35,6 +64,14 @@ body {
     justify-content: space-evenly;
     padding: 1rem;
     align-items: center;
+}
+
+#tamaName {
+    display: none; 
+    text-align: center; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    margin-top: 1rem;
 }
 
 .tamaImg {
