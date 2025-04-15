@@ -10,12 +10,23 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
+    border-radius: 25px;
+    margin: 2rem;
+}
+
+.chooseName {
+    display: flex;
+    padding: 1rem;
 }
 
 .tamaImg {
     display: flex;
     justify-content: center;
     visibility: hidden;
+}
+
+#tamaImg {
+    height: 20vh;
 }
 
 #food-container {
