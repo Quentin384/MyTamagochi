@@ -4,6 +4,7 @@ const status = document.getElementById('status');
 const interactionMsg = document.getElementById('interactionMsg');
 const userInput = document.getElementById('input');
 const validate = document.getElementById('button');
+const tamaImg = document.getElementById('tamaImg');
 
 let userTama = null;
 
@@ -48,8 +49,8 @@ class FoodItem {
     }
 }
 
-const pomme = new FoodItem("Pomme", 10, 5, 10);
-const poisson = new FoodItem("Poisson", 5, 5, 1);
+const pomme = new FoodItem("une pomme", 10, 5, 10);
+const poisson = new FoodItem("un poisson", 5, 5, 1);
 
 /* Création du Tamagotchi au clic */
 
@@ -65,18 +66,32 @@ validate.addEventListener('click', (event) => {
     }
 
     userTama = new Tamagotchi(userTamaName);
+    tamaImg.style.visibility = "visible";
     interactionMsg.textContent = `${userTama.name} est né ! Prenez soin de lui.`;
     status.textContent = `Faim : ${userTama.hunger}, Énergie : ${userTama.energy}, Humeur : ${userTama.mood}`;
 });
 
-/* Tick temps toutes les 5 secondes */
+/* Barre du Tama descend et changement des valeurs */
 
 setInterval(() => {
     if (userTama) {
         userTama.passTime();
         status.textContent = `Faim : ${userTama.hunger}, Énergie : ${userTama.energy}, Humeur : ${userTama.mood}`;
+
+        // Mise à jour de l'image et du fond selon l'humeur
+
+        const body = document.body;
+
+        if (userTama.mood <= 30) {
+            tamaImg.src = 'triste.png';
+            body.classList.add('sad');
+        } else {
+            tamaImg.src = 'image/Tamagochi.jpg';
+            body.classList.remove('sad');
+        }
     }
 }, 5000);
+
 
 /* Bouton pour nourrir */
 

@@ -6,12 +6,21 @@ body {
 
 .container {
     width: 80vw;
+    background-color: pink;
+    color: white;
     display: flex;
     flex-direction: column;
 }
 
+.tamaImg {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+}
+
 #food-container {
     display: flex;
+    justify-content: center;
     flex-direction: row;
 }
 
