@@ -1,12 +1,13 @@
-const pommeImg = document.getElementById('pomme');
-const poissonImg = document.getElementById('poisson');
+const carotteImg = document.getElementById('carotte');
+const grainesImg = document.getElementById('graines');
+const bookImg = document.getElementById('book');
 const status = document.getElementById('status');
 const interactionMsg = document.getElementById('interactionMsg');
 const userInput = document.getElementById('input');
 const validate = document.getElementById('button');
 const tamaImg = document.getElementById('tamaImg');
 
-let userTama = null;
+let Tama = null;
 
 /* Classe du Tamagotchi */
 
@@ -18,17 +19,10 @@ class Tamagotchi {
         this.mood = 100;
     }
 
-    eat(food) {
-        if (!(food instanceof FoodItem)) {
-            console.error("L'objet fourni n'est pas un aliment valide.");
-            return;
-        }
-
-        this.hunger = Math.min(this.hunger + food.nutritionValue, 100);
-        this.energy = Math.min(this.energy + food.energyValue, 100);
-        this.mood = Math.min(this.mood + food.moodValue, 100);
-
-        console.log(`${this.name} a mangé ${food.name} et sa faim est maintenant à ${this.hunger}.`);
+    activités(item) {
+        this.hunger = Math.min(this.hunger + item.nutritionValue, 100);
+        this.energy = Math.min(this.energy + item.energyValue, 100);
+        this.mood = Math.min(this.mood + item.moodValue, 100);
     }
 
     passTime() {
@@ -38,9 +32,9 @@ class Tamagotchi {
     }
 }
 
-/* Classe des aliments */
+/* Classe des activités */
 
-class FoodItem {
+class ActivitésItem {
     constructor(name, nutritionValue, energyValue, moodValue) {
         this.name = name;
         this.nutritionValue = nutritionValue;
@@ -49,8 +43,11 @@ class FoodItem {
     }
 }
 
-const pomme = new FoodItem("une pomme", 10, 5, 10);
-const poisson = new FoodItem("un poisson", 5, 5, 1);
+// Instances des activités
+
+const carotte = new ActivitésItem("une carotte", 10, 0, 5);
+const graines = new ActivitésItem("des graines", 5, 5, 0);
+const book = new ActivitésItem("un livre", 0, 5, 10);
 
 /* Création du Tamagotchi au clic */
 
@@ -67,51 +64,54 @@ validate.addEventListener('click', (event) => {
 
     Tama = new Tamagotchi(TamaName);
     tamaImg.style.visibility = "visible";
-    interactionMsg.textContent = `${Tama.name} est né ! Prenez soin de lui.`;
+    interactionMsg.textContent = `${Tama.name} est né ! Prends soin de lui.`;
     status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
 });
 
-/* Barre du Tama descend et changement des valeurs */
+/* Mise à jour automatique de l'état toutes les 5 secondes */
 
 setInterval(() => {
     if (Tama) {
         Tama.passTime();
-        status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
-
-        // Mise à jour de l'image et du fond selon l'humeur
-
-        const body = document.body;
 
         if (Tama.mood <= 30) {
-            tamaImg.src = 'image/triste.png';
-            body.classList.add('sad');
+            tamaImg.src = 'image/sad.jpg';
+            status.textContent = `Ton Tamagotchi est triste ! Son humeur est à ${Tama.mood}`;
         } else {
-            tamaImg.src = 'image/Tamagochi.png';
-            body.classList.remove('sad');
+            tamaImg.src = 'image/Tamagochi.jpg';
+            status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
         }
     }
 }, 5000);
 
+/* Fonction utilitaire : gérer une activité */
 
-/* Bouton pour nourrir */
-
-pommeImg.addEventListener("click", () => {
-    if (Tama) {
-        Tama.eat(pomme);
-        interactionMsg.textContent = `${Tama.name} a mangé ${pomme.name}.`;
-        status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
-    } else {
+function effectuerActivité(item, imagePath, actionText) {
+    if (!Tama) {
         alert("Veuillez d'abord créer votre Tamagotchi.");
+        return;
     }
+
+    Tama.activités(item);
+    tamaImg.src = imagePath;
+    interactionMsg.textContent = `${Tama.name} ${actionText} ${item.name}.`;
+    status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+
+    setTimeout(() => {
+        interactionMsg.textContent = "";
+    }, 3000);
+}
+
+/* Gestion des boutons */
+
+carotteImg.addEventListener("click", () => {
+    effectuerActivité(carotte, 'image/eating.jpg', 'a mangé');
 });
 
-poissonImg.addEventListener("click", () => {
-    if (Tama) {
-        Tama.eat(poisson);
-        interactionMsg.textContent = `${Tama.name} a mangé ${poisson.name}.`;
-        status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
-    } else {
-        alert("Veuillez d'abord créer votre Tamagotchi.");
-    }
+grainesImg.addEventListener("click", () => {
+    effectuerActivité(graines, 'image/eating.jpg', 'a mangé');
 });
 
+bookImg.addEventListener("click", () => {
+    effectuerActivité(book, 'image/reading.jpg', 'a lu');
+});
