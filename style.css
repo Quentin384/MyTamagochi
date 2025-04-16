@@ -57,23 +57,34 @@ body.sleeping .container {
 
 /* Bouton validation */
 .btn {
-    background-color: transparent;
-    border: 1px solid white;
-    padding: 0.5rem 1rem;
+    background-color: orange; 
+    padding: 0.7rem 1.5rem;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     color: white;
     font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: lightgreen;
+    border: none;
+    transform: scale(1.05); 
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(72, 182, 97, 0.7); 
 }
 
 /* Boite contenant gauges et images */
 .main-box {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 /* Affichage du nom */
