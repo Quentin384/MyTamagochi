@@ -1,4 +1,4 @@
-🐾 Tamagotchi JS - Ton compagnon virtuel dans le navigateur
+🐾 MyTamagotchi - Ton compagnon virtuel dans le navigateur
 
 
 Bienvenue dans MyTamagotchi, un mini-jeu codé en JavaScript natif, pensé pour les nostalgiques du célèbre jouet virtuel.
@@ -6,7 +6,8 @@ Bienvenue dans MyTamagotchi, un mini-jeu codé en JavaScript natif, pensé pour 
 Ce projet met en œuvre les principes de programmation orientée objet, la manipulation du DOM et l’algorithmie de base, dans un esprit ludique mais rigoureux.
 
 🎮 Lien vers le jeu en ligne
-👉 Jouer à Tamagotchi JS https://quentin384.github.io/MyTamagochi/
+👉 Jouer à Tamagotchi JS 
+https://quentin384.github.io/MyTamagochi/
 
 📖 Règles du jeu
 
