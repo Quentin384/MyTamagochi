@@ -133,8 +133,8 @@ function effectuerActivité(item, imagePath, actionText) {
 
     setTimeout(() => {
         interactionMsg.textContent = "";
-    }, 5000);
-}
+    }, 8000);     //                                           <<<<<<<<<<<<<      ICI      <<<<<<<<<<<<<<<<<<<<<<<<<<
+}                 //                                                         Decrementation                                        
 
 // Gère le réveil
 wakeUpBtn.addEventListener('click', () => {
@@ -149,8 +149,8 @@ wakeUpBtn.addEventListener('click', () => {
     document.body.classList.remove('sleeping');
 
     setTimeout(() => {
-        interactionMsg.textContent = "";
-    }, 5000);
+        interactionMsg.textContent = ""; 
+    }, 10000);
 });
 
 // Événements des boutons d’activités
