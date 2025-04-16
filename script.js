@@ -54,7 +54,7 @@ const graines = new ActivitésItem("des graines", 5, 5, 0);
 const book = new ActivitésItem("un livre", 0, 0, 5);
 const sing = new ActivitésItem("une chanson", 0, -5, 10);
 const sleep = new ActivitésItem("au chaud dans son lit", 0, 100, 50);
-const sport = new ActivitésItem(", il est super content", 0, -5, 10);
+const sport = new ActivitésItem("et il est super content !", 0, -5, 10);
 
 // Création du Tamagotchi
 validate.addEventListener('click', (event) => {
