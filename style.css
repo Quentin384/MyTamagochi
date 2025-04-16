@@ -3,7 +3,11 @@
 body {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background: url('image/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
     margin: 0;
     font-family: sans-serif;
 }
@@ -91,6 +95,10 @@ body.sleeping .container {
     gap: 2rem;
     flex-wrap: wrap;
     padding: 1rem;
+}
+
+.activités {
+    width: 5vw;
 }
 
 .food {

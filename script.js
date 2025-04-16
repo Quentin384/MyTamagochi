@@ -52,7 +52,7 @@ const carotte = new ActivitésItem("une carotte", 10, 0, 5);
 const graines = new ActivitésItem("des graines", 5, 5, 0);
 const book = new ActivitésItem("un livre", 0, 0, 5);
 const sing = new ActivitésItem("une chanson", 0, -5, 10);
-const sleep = new ActivitésItem("au chaud dans son lit", 0, 10, 5);
+const sleep = new ActivitésItem("au chaud dans son lit", 0, 100, 50);
 
 // Création du Tamagotchi
 validate.addEventListener('click', (event) => {
@@ -93,7 +93,7 @@ setInterval(() => {
 
         if (Tama.energy <= 30) {
             tamaImg.src = 'image/tired.jpg';
-            status.textContent = `Ton Tamagotchi est fatigué ! Son energie est à ${Tama.energy}, tu devais le mettre dans son lit.`;
+            status.textContent = `Ton Tamagotchi est fatigué ! Son energie est à ${Tama.energy}, tu devais le mettre au lit.`;
         } else {
             tamaImg.src = 'image/Tamagochi.jpg';
             status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
@@ -108,21 +108,24 @@ function effectuerActivité(item, imagePath, actionText) {
         return;
     }
 
-    // Si le Tamagotchi dort et l’activité n’est pas le sommeil
+    // Activité alors que le tamagochi dort
     if (isSleeping && item !== sleep) {
         alert(`${Tama.name} dort profondément. Réveille-le d'abord.`);
         return;
     }
 
-    // Déclenche le sommeil sans appliquer les effets tant que non réveillé
+    // Déclenche le sommeil sans appliquer les effets
     if (item === sleep) {
         isSleeping = true;
         tamaImg.src = imagePath;
         document.body.classList.add('sleeping');
         wakeUpBtn.style.display = 'inline-block';
+        interactionMsg.textContent = `${Tama.name} ${actionText} ${item.name}.`;
+        status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
         return;
     }
 
+    // Fonction pour les activités
     Tama.activités(item);
     tamaImg.src = imagePath;
     interactionMsg.textContent = `${Tama.name} ${actionText} ${item.name}.`;
@@ -168,6 +171,6 @@ singImg.addEventListener("click", () => {
 });
 
 sleepImg.addEventListener("click", () => {
-    effectuerActivité(sleep, 'image/sleeping.jpg', 'va dormir');
+    effectuerActivité(sleep, 'image/sleeping.jpg', 'dort');
 });
 
