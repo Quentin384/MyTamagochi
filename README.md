@@ -6,7 +6,7 @@ Bienvenue dans MyTamagotchi, un mini-jeu codé en JavaScript natif, pensé pour 
 Ce projet met en œuvre les principes de programmation orientée objet, la manipulation du DOM et l’algorithmie de base, dans un esprit ludique mais rigoureux.
 
 🎮 Lien vers le jeu en ligne
-👉 Jouer à Tamagotchi JS 
+👉 Jouer à MyTamagotchi 
 https://quentin384.github.io/MyTamagochi/
 
 📖 Règles du jeu
