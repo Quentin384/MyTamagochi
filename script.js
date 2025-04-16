@@ -102,7 +102,7 @@ setInterval(() => {
         }
 
         if (Tama.hunger <= 30) {
-            tamaImg.src = 'image/hungry.jpg';
+            tamaImg.src = 'image/hungry.png';
             status.textContent = `Ton Tamagotchi a faim ! Sa faim est à ${Tama.hunger}, tu devais lui donné à manger.`;
         } else {
             tamaImg.src = 'image/Tamagochi.jpg';

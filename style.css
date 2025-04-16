@@ -30,7 +30,7 @@ body.sleeping {
     background-position: center;
 }
 
-/* Optionnel : fond personnalisé pendant le sommeil */
+/* Fond personnalisé pendant le sommeil */
 body.sleeping .container {
     color: white;
 }
@@ -57,9 +57,10 @@ body.sleeping .container {
     width: 80vw;
     display: flex;
     flex-direction: column;
-    margin: 2rem;
+    margin: 1.95rem;
 }
 
+/* Bouton de validation du nom */
 .btn {
     background-color: transparent;
     border: 1px solid white; 
@@ -74,6 +75,7 @@ body.sleeping .container {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Classe de la division de choix du nom */
 .chooseName {
     display: flex;
     justify-content: space-evenly;
@@ -89,6 +91,7 @@ body.sleeping .container {
     margin-top: 1rem;
 }
 
+/* Division de l'image du Tama */
 .tamaImg {
     display: flex;
     justify-content: center;
@@ -96,10 +99,12 @@ body.sleeping .container {
     margin: 1rem 0;
 }
 
+/* Image du Tama */ 
 #tamaImg {
     height: 50vh;
 }
 
+/* Container des activités */
 #activités-container {
     display: flex;
     justify-content: center;
@@ -108,16 +113,23 @@ body.sleeping .container {
     padding: 1rem;
 }
 
+/* Bouton des activités */
 .activités {
     width: 5vw;
-}
-
-.food {
-    width: 100px; 
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
-.food:hover {
+.activités:hover {
     transform: scale(1.1);
+}
+
+/* Affichage mobile */
+@media (max-width:600px) {
+    body {
+        font-size: 1rem;
+    }
+    .activités {
+        width: 15vw;
+    }
 }
