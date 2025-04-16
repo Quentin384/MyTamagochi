@@ -151,7 +151,7 @@ wakeUpBtn.addEventListener('click', () => {
 
     isSleeping = false;
     wakeUpBtn.style.display = 'none';
-    tamaImg.src = 'image/Wakeup.jpg';
+    tamaImg.src = 'image/wakeup.jpg';
     interactionMsg.textContent = `${Tama.name} s'est réveillé.`;
     Tama.activités(sleep);
     updateGauges();
