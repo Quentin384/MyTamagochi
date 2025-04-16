@@ -16,6 +16,7 @@ body {
     color: white;
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 
 /* Thème sommeil */
@@ -26,7 +27,7 @@ body.sleeping {
     background-position: center;
 }
 
-/* Fond personnalisé pendant le sommeil */
+/* Fond pendant le sommeil */
 body.sleeping .container {
     color: white;
 }
@@ -69,6 +70,7 @@ body.sleeping .container {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Boite contenant gauges et images */
 .main-box {
     display: flex;
     flex-direction: row;
@@ -148,8 +150,14 @@ progress::-moz-progress-bar {
     gap: 2rem;
     flex-wrap: wrap;
     padding: 1rem;
+    position: fixed; 
+    bottom: 0;       
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Bouton activités */
 .activités {
     width: 5vw;
     cursor: pointer;

@@ -1,4 +1,4 @@
-// Récupération des éléments HTML
+/* Bouton */
 const carotteImg = document.getElementById('carotte');
 const grainesImg = document.getElementById('graines');
 const bookImg = document.getElementById('book');
@@ -51,7 +51,7 @@ class ActivitésItem {
     }
 }
 
-// Définition des activités
+// Instances des activités
 const carotte = new ActivitésItem("une carotte", 10, 0, 5);
 const graines = new ActivitésItem("des graines", 5, 5, 0);
 const book = new ActivitésItem("un livre", 0, 0, 5);
@@ -59,7 +59,7 @@ const sing = new ActivitésItem("une chanson", 0, -5, 10);
 const sleep = new ActivitésItem("au chaud dans son lit", 0, 100, 50);
 const sport = new ActivitésItem("et il est super content !", 0, -5, 10);
 
-// Met à jour les jauges
+// Mise à jour les jauges
 function updateGauges() {
     if (!Tama) return;
     hungerBar.value = Tama.hunger;
@@ -91,7 +91,7 @@ validate.addEventListener('click', (event) => {
     tamaNameDisplay.textContent = `${Tama.name}`;
 });
 
-// Décrémentation régulière de l'état
+// Décrémentation de l'état
 setInterval(() => {
     if (Tama && !isSleeping) {
         Tama.passTime();
@@ -153,7 +153,7 @@ wakeUpBtn.addEventListener('click', () => {
     wakeUpBtn.style.display = 'none';
     tamaImg.src = 'image/Wakeup.jpg';
     interactionMsg.textContent = `${Tama.name} s'est réveillé.`;
-    Tama.activités(sleep); // Appliquer les effets du sommeil
+    Tama.activités(sleep);
     updateGauges();
     document.body.classList.remove('sleeping');
 });
