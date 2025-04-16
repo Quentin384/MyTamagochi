@@ -10,52 +10,52 @@
 </head>
 
 <body>
-
     <div class="container">
 
-
         <div id="chooseName" class="chooseName">
-
-            <label for="input">Nom de mon Tamagochi :</label>
-            <input type="text" id="input" class="input" placeholder="Choisissez le nom de votre Tamagochi" required>
-
-            <button type="submit" id="button" class="btn">Enregrister</button>
-
+            <label for="input">Nom de mon Tamagotchi :</label>
+            <input type="text" id="input" class="input" placeholder="Choisissez le nom de votre Tamagotchi" required>
+            <button type="submit" id="button" class="btn">Enregistrer</button>
         </div>
 
         <div id="tamaName"></div>
 
         <div class="tamaImg">
-
-            <img src="image/Tamagochi.jpg" alt="Tamagochi" id="tamaImg">
-
+            <img src="image/Tamagochi.jpg" alt="Tamagotchi" id="tamaImg">
         </div>
 
         <div class="status">
 
-            <p id="status"></p>
-    
+            <div class="gauge-container">
+                <label for="hungerBar">Faim</label>
+                <progress id="hungerBar" value="100" max="100"></progress>
+            </div>
+
+            <div class="gauge-container">
+                <label for="energyBar">Énergie</label>
+                <progress id="energyBar" value="100" max="100"></progress>
+            </div>
+
+            <div class="gauge-container">
+                <label for="moodBar">Humeur</label>
+                <progress id="moodBar" value="100" max="100"></progress>
+            </div>
+
             <p id="interactionMsg"></p>
-    
         </div>
-    
-    
-    
+
         <div id="activités-container">
-    
             <img src="image/carrot.png" alt="Carotte" id="carotte" class="activités">
             <img src="image/wheat.png" alt="Graines" id="graines" class="activités">
-            <img src="image/book.png" alt="Livres" id="book" class="activités">
+            <img src="image/book.png" alt="Livre" id="book" class="activités">
             <img src="image/micro.png" alt="Chanson" id="sing" class="activités">
             <img src="image/ball.png" alt="Sport" id="sport" class="activités">
             <img src="image/moon.png" alt="Dormir" id="sleep" class="activités">
-    
         </div>
 
         <button id="wakeUp" style="display: none;">Réveil</button>
 
     </div>
-
 </body>
 
 </html>

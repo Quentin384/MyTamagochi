@@ -1,4 +1,4 @@
-// Bouton des activités 
+// Récupération des éléments HTML
 const carotteImg = document.getElementById('carotte');
 const grainesImg = document.getElementById('graines');
 const bookImg = document.getElementById('book');
@@ -7,11 +7,14 @@ const sleepImg = document.getElementById('sleep');
 const sportImg = document.getElementById('sport');
 const wakeUpBtn = document.getElementById('wakeUp');
 
-const status = document.getElementById('status');
 const interactionMsg = document.getElementById('interactionMsg');
 const userInput = document.getElementById('input');
 const validate = document.getElementById('button');
 const tamaImg = document.getElementById('tamaImg');
+
+const hungerBar = document.getElementById('hungerBar');
+const energyBar = document.getElementById('energyBar');
+const moodBar = document.getElementById('moodBar');
 
 let Tama = null;
 let isSleeping = false;
@@ -56,6 +59,14 @@ const sing = new ActivitésItem("une chanson", 0, -5, 10);
 const sleep = new ActivitésItem("au chaud dans son lit", 0, 100, 50);
 const sport = new ActivitésItem("et il est super content !", 0, -5, 10);
 
+// Met à jour les jauges
+function updateGauges() {
+    if (!Tama) return;
+    hungerBar.value = Tama.hunger;
+    energyBar.value = Tama.energy;
+    moodBar.value = Tama.mood;
+}
+
 // Création du Tamagotchi
 validate.addEventListener('click', (event) => {
     event.preventDefault();
@@ -68,11 +79,11 @@ validate.addEventListener('click', (event) => {
         return;
     }
 
-    // Instance du Tamagochi
     Tama = new Tamagotchi(TamaName);
     tamaImg.style.visibility = "visible";
     interactionMsg.textContent = `${Tama.name} est né ! Prends soin de lui.`;
-    status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+
+    updateGauges();
 
     document.querySelector('.chooseName').style.display = 'none';
     const tamaNameDisplay = document.getElementById('tamaName');
@@ -80,73 +91,61 @@ validate.addEventListener('click', (event) => {
     tamaNameDisplay.textContent = `${Tama.name}`;
 });
 
-// Met à jour l'état toutes les 10 secondes
+// Décrémentation régulière de l'état
 setInterval(() => {
     if (Tama && !isSleeping) {
         Tama.passTime();
+        updateGauges();
 
         if (Tama.mood <= 30) {
             tamaImg.src = 'image/sad.jpg';
-            status.textContent = `Ton Tamagotchi est triste ! Son humeur est à ${Tama.mood}`;
-        } else {
-            tamaImg.src = 'image/Tamagochi.jpg';
-            status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
-        }
-
-        if (Tama.energy <= 30) {
+            interactionMsg.textContent = `Ton Tamagotchi est triste !`;
+        } else if (Tama.energy <= 30) {
             tamaImg.src = 'image/tired.jpg';
-            status.textContent = `Ton Tamagotchi est fatigué ! Son energie est à ${Tama.energy}, tu devais le mettre au lit.`;
-        } else {
-            tamaImg.src = 'image/Tamagochi.jpg';
-            status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
-        }
-
-        if (Tama.hunger <= 30) {
+            interactionMsg.textContent = `Ton Tamagotchi est fatigué !`;
+        } else if (Tama.hunger <= 30) {
             tamaImg.src = 'image/hungry.png';
-            status.textContent = `Ton Tamagotchi a faim ! Sa faim est à ${Tama.hunger}, tu devais lui donné à manger.`;
+            interactionMsg.textContent = `Ton Tamagotchi a faim !`;
         } else {
             tamaImg.src = 'image/Tamagochi.jpg';
-            status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+            interactionMsg.textContent = ``;
         }
     }
-}, 20000);   //                                           <<<<<<<<<<<<<      ICI      <<<<<<<<<<<<<<<<<<<<<<<<<<
-            //                                                          Decrementation
-// Gère les activités
+}, 20000);
+
+// Gestion des activités
 function effectuerActivité(item, imagePath, actionText) {
     if (!Tama) {
         alert("Veuillez d'abord créer votre Tamagotchi.");
         return;
     }
 
-    // Activité alors que le tamagochi dort
     if (isSleeping && item !== sleep) {
         alert(`${Tama.name} dort profondément. Réveille-le d'abord.`);
         return;
     }
 
-    // Déclenche le sommeil sans appliquer les effets
     if (item === sleep) {
         isSleeping = true;
         tamaImg.src = imagePath;
         document.body.classList.add('sleeping');
         wakeUpBtn.style.display = 'inline-block';
         interactionMsg.textContent = `${Tama.name} ${actionText} ${item.name}.`;
-        status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+        updateGauges();
         return;
     }
 
-    // Fonction pour les activités
     Tama.activités(item);
     tamaImg.src = imagePath;
     interactionMsg.textContent = `${Tama.name} ${actionText} ${item.name}.`;
-    status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+    updateGauges();
 
     setTimeout(() => {
         interactionMsg.textContent = "";
-    }, 10000);    
-}                                                                                                       
+    }, 10000);
+}
 
-// Gère le réveil
+// Réveil
 wakeUpBtn.addEventListener('click', () => {
     if (!isSleeping) return;
 
@@ -154,36 +153,27 @@ wakeUpBtn.addEventListener('click', () => {
     wakeUpBtn.style.display = 'none';
     tamaImg.src = 'image/Wakeup.jpg';
     interactionMsg.textContent = `${Tama.name} s'est réveillé.`;
-    Tama.activités(sleep);
-    status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+    Tama.activités(sleep); // Appliquer les effets du sommeil
+    updateGauges();
     document.body.classList.remove('sleeping');
-
-  /*  setTimeout(() => {
-        interactionMsg.textContent = "";                   
-    }, 10000);  */
 });
 
-// Événements des boutons d’activités
+// Événements des boutons
 carotteImg.addEventListener("click", () => {
     effectuerActivité(carotte, 'image/eating.jpg', 'a mangé');
 });
-
 grainesImg.addEventListener("click", () => {
     effectuerActivité(graines, 'image/eating.jpg', 'a mangé');
 });
-
 bookImg.addEventListener("click", () => {
     effectuerActivité(book, 'image/reading.jpg', 'a lu');
 });
-
 singImg.addEventListener("click", () => {
     effectuerActivité(sing, 'image/singing.jpg', 'a chanté');
 });
-
 sleepImg.addEventListener("click", () => {
     effectuerActivité(sleep, 'image/sleeping.jpg', 'dort');
 });
-
 sportImg.addEventListener("click", () => {
     effectuerActivité(sport, 'image/sport.jpg', 'fait du sport');
 });
