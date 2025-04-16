@@ -4,6 +4,7 @@ const grainesImg = document.getElementById('graines');
 const bookImg = document.getElementById('book');
 const singImg = document.getElementById('sing');
 const sleepImg = document.getElementById('sleep');
+const sportImg = document.getElementById('sport');
 const wakeUpBtn = document.getElementById('wakeUp');
 
 const status = document.getElementById('status');
@@ -53,6 +54,7 @@ const graines = new ActivitésItem("des graines", 5, 5, 0);
 const book = new ActivitésItem("un livre", 0, 0, 5);
 const sing = new ActivitésItem("une chanson", 0, -5, 10);
 const sleep = new ActivitésItem("au chaud dans son lit", 0, 100, 50);
+const sport = new ActivitésItem(", il est super content", 0, -5, 10);
 
 // Création du Tamagotchi
 validate.addEventListener('click', (event) => {
@@ -98,9 +100,17 @@ setInterval(() => {
             tamaImg.src = 'image/Tamagochi.jpg';
             status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
         }
-    }
-}, 10000);
 
+        if (Tama.hunger <= 30) {
+            tamaImg.src = 'image/hungry.jpg';
+            status.textContent = `Ton Tamagotchi a faim ! Sa faim est à ${Tama.hunger}, tu devais lui donné à manger.`;
+        } else {
+            tamaImg.src = 'image/Tamagochi.jpg';
+            status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
+        }
+    }
+}, 20000);   //                                           <<<<<<<<<<<<<      ICI      <<<<<<<<<<<<<<<<<<<<<<<<<<
+            //                                                          Decrementation
 // Gère les activités
 function effectuerActivité(item, imagePath, actionText) {
     if (!Tama) {
@@ -133,8 +143,8 @@ function effectuerActivité(item, imagePath, actionText) {
 
     setTimeout(() => {
         interactionMsg.textContent = "";
-    }, 8000);     //                                           <<<<<<<<<<<<<      ICI      <<<<<<<<<<<<<<<<<<<<<<<<<<
-}                 //                                                         Decrementation                                        
+    }, 10000);    
+}                                                                                                       
 
 // Gère le réveil
 wakeUpBtn.addEventListener('click', () => {
@@ -148,9 +158,9 @@ wakeUpBtn.addEventListener('click', () => {
     status.textContent = `Faim : ${Tama.hunger}, Énergie : ${Tama.energy}, Humeur : ${Tama.mood}`;
     document.body.classList.remove('sleeping');
 
-    setTimeout(() => {
-        interactionMsg.textContent = ""; 
-    }, 10000);
+  /*  setTimeout(() => {
+        interactionMsg.textContent = "";                   
+    }, 10000);  */
 });
 
 // Événements des boutons d’activités
@@ -174,3 +184,6 @@ sleepImg.addEventListener("click", () => {
     effectuerActivité(sleep, 'image/sleeping.jpg', 'dort');
 });
 
+sportImg.addEventListener("click", () => {
+    effectuerActivité(sport, 'image/sport.jpg', 'fait du sport');
+});
