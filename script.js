@@ -1,4 +1,4 @@
-/* Bouton */
+/* Bouton activités */
 const carotteImg = document.getElementById('carotte');
 const grainesImg = document.getElementById('graines');
 const bookImg = document.getElementById('book');
@@ -12,6 +12,7 @@ const userInput = document.getElementById('input');
 const validate = document.getElementById('button');
 const tamaImg = document.getElementById('tamaImg');
 
+/* Jauges d'etat */ 
 const hungerBar = document.getElementById('hungerBar');
 const energyBar = document.getElementById('energyBar');
 const moodBar = document.getElementById('moodBar');
@@ -111,7 +112,7 @@ setInterval(() => {
             interactionMsg.textContent = ``;
         }
     }
-}, 20000);
+}, 20000); //                                      <<<<<<<<<<<<<<<<<<<<  Le timer de decrementation est ici 
 
 // Gestion des activités
 function effectuerActivité(item, imagePath, actionText) {
@@ -142,7 +143,7 @@ function effectuerActivité(item, imagePath, actionText) {
 
     setTimeout(() => {
         interactionMsg.textContent = "";
-    }, 10000);
+    }, 10000); //                               <<<<<<<<<<<<<<<<<<<< Le timer d'affichage des elements est ici
 }
 
 // Réveil
