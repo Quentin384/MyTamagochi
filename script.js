@@ -7,15 +7,22 @@ const sleepImg = document.getElementById('sleep');
 const sportImg = document.getElementById('sport');
 const wakeUpBtn = document.getElementById('wakeUp');
 
-const interactionMsg = document.getElementById('interactionMsg');
+/* Input utilisateur */
 const userInput = document.getElementById('input');
 const validate = document.getElementById('button');
+
+/* Output affichage */
+const interactionMsg = document.getElementById('interactionMsg');
 const tamaImg = document.getElementById('tamaImg');
 
 /* Jauges d'etat */ 
 const hungerBar = document.getElementById('hungerBar');
 const energyBar = document.getElementById('energyBar');
 const moodBar = document.getElementById('moodBar');
+
+/* Musique */
+const music = document.getElementById('musique');
+const singing = document.getElementById('musique-singing');
 
 let Tama = null;
 let isSleeping = false;
@@ -85,6 +92,7 @@ validate.addEventListener('click', (event) => {
     interactionMsg.textContent = `${Tama.name} est né ! Prends soin de lui.`;
 
     updateGauges();
+    jouerMusique();
 
     document.querySelector('.chooseName').style.display = 'none';
     const tamaNameDisplay = document.getElementById('tamaName');
@@ -112,7 +120,7 @@ setInterval(() => {
             interactionMsg.textContent = ``;
         }
     }
-}, 20000); //                                      <<<<<<<<<<<<<<<<<<<<  Le timer de decrementation est ici 
+}, 20000); //                                      <<<<<<<<<<<<<<<<<<<<<<<<  Le timer de decrementation est ici 
 
 // Gestion des activités
 function effectuerActivité(item, imagePath, actionText) {
@@ -159,18 +167,44 @@ wakeUpBtn.addEventListener('click', () => {
     document.body.classList.remove('sleeping');
 });
 
+// Musique 
+function jouerMusique() {
+    if (!music.paused) {
+        music.currentTime = 0;
+        return;
+    }
+    
+    singing.pause();
+    singing.currentTime = 0;
+
+    music.play();
+}
+
+function jouerSinging() {
+    music.pause();
+    music.currentTime = 0;
+
+    if (!singing.paused) {
+        singing.currentTime = 0;
+        return;
+    }
+
+    singing.play();
+}
+
 // Événements des boutons
 carotteImg.addEventListener("click", () => {
-    effectuerActivité(carotte, 'image/eating.jpg', 'a mangé');
+    effectuerActivité(carotte, 'image/eating.jpg', 'mange');
 });
 grainesImg.addEventListener("click", () => {
-    effectuerActivité(graines, 'image/eating.jpg', 'a mangé');
+    effectuerActivité(graines, 'image/eating.jpg', 'mange');
 });
 bookImg.addEventListener("click", () => {
-    effectuerActivité(book, 'image/reading.jpg', 'a lu');
+    effectuerActivité(book, 'image/reading.jpg', 'lit');
 });
 singImg.addEventListener("click", () => {
-    effectuerActivité(sing, 'image/singing.jpg', 'a chanté');
+    effectuerActivité(sing, 'image/singing.jpg', 'chante');
+    jouerSinging()
 });
 sleepImg.addEventListener("click", () => {
     effectuerActivité(sleep, 'image/sleeping.jpg', 'dort');
