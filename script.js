@@ -173,7 +173,7 @@ function jouerMusique() {
         music.currentTime = 0;
         return;
     }
-    
+
     singing.pause();
     singing.currentTime = 0;
 
@@ -212,3 +212,4 @@ sleepImg.addEventListener("click", () => {
 sportImg.addEventListener("click", () => {
     effectuerActivité(sport, 'image/sport.jpg', 'fait du sport');
 });
+
