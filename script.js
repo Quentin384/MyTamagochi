@@ -75,41 +75,49 @@ function updateGauges() {
     moodBar.value = Tama.mood;
 }
 
+// Fonction de nettoyage du nom
+function nettoyerNom(nom) {
+    return nom
+        .toLowerCase()                   
+        .normalize("NFD")                           
+        .replace(/[\u0300-\u036f]/g, "")            
+        .replace(/[^a-z0-9]/g, "");                
+}
+
 // Création du Tamagotchi
 validate.addEventListener('click', (event) => {
     event.preventDefault();
 
     const TamaName = userInput.value.trim();
+    const nomNettoye = nettoyerNom(TamaName);    
     userInput.value = '';
 
     // Liste des mots interdits
-
     const motsInterdits = [
         // insultes directes
-        "con", "connard", "connasse", "enculé", "encule", "salope", "pute", "putain", "merde", "bordel", "batard", "bâtard", "salaud",
-        "sac à merde", "fdp", "ntm", "nique", "nique ta mère", "ta gueule", "tg", "chié", "chier", "chiant", "branleur", "branleuse",
-        
+        "con", "connard", "connasse", "encule", "enculé", "salope", "pute", "putain", "merde", "bordel", "batard", "salaud",
+        "sacamerde", "fdp", "ntm", "nique", "niquetamere", "tagueule", "tg", "chie", "chier", "chiant", "branleur", "branleuse",
+
         // insultes sexuelles / organes
-        "bite", "bitte", "chatte", "couille", "couilles", "nichon", "nichons", "seins", "teub", "zboub", "zizi", "pénis", "vagin", "anus",
-        
-        // anglicismes / internet
-        "fuck", "fucking", "shit", "asshole", "bitch", "bastard", "dick", "pussy", "cum", "suck", "whore",
-    
-        // racisme / haine (basiquement à filtrer aussi)
-        "raciste", "nazi", "hitler", "heil", "nègre", "bougnoule", "raton", "youpin", "pédé", "pd", "enculé de ta race", "sale arabe", "sale noir",
-    
-        // variantes courantes
-        "ta race", "va mourir", "nique ta", "nique le", "nique ton", "suce", "baise", "salopard", "fils de", "fdp", "tg", "tgm", "sac à foutre"
+        "bite", "bitte", "chatte", "couille", "nichon", "seins", "teub", "zboub", "zizi", "penis", "vagin", "anus",
+
+        // anglicismes
+        "fuck", "shit", "bitch", "dick", "pussy", "cum", "suck", "whore", "fucking", "asshole", "bastard",
+
+        // haine / racisme
+        "raciste", "nazi", "hitler", "heil", "negre", "bougnoule", "raton", "youpin", "pede", "pd", "enculedetarace", "salearabe", "salenoir",
+
+        // variantes
+        "tarace", "vamourir", "niqueta", "niqueton", "suce", "baise", "salopard", "filsde", "tgm", "sacafoutre"
     ];
-    
-    const nomEnMinuscule = TamaName.toLowerCase();
-    if (motsInterdits.some(mot => nomEnMinuscule.includes(mot))) {
-     alert("Ce nom n'est pas autorisé. Choisissez un nom plus approprié.");
-        return;
-    }
 
     if (TamaName === '') {
         alert("Veuillez entrer un nom pour votre Tamagotchi.");
+        return;
+    }
+
+    if (motsInterdits.some(mot => nomNettoye.includes(mot))) {
+        alert("Ce nom n'est pas autorisé. Choisissez un nom plus approprié.");
         return;
     }
 
