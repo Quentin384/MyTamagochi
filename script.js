@@ -94,22 +94,7 @@ validate.addEventListener('click', (event) => {
 
     // Liste des mots interdits
     const motsInterdits = [
-        // insultes directes
-        "con", "connard", "connasse", "encule", "enculé", "salope", "pute", "putain", "merde", "bordel", "batard", "salaud",
-        "sacamerde", "fdp", "ntm", "nique", "niquetamere", "tagueule", "tg", "chie", "chier", "chiant", "branleur", "branleuse",
-        "caca", "pipi", "cul",
-
-        // insultes sexuelles / organes
-        "bite", "bitte", "chatte", "couille", "nichon", "seins", "teub", "zboub", "zizi", "penis", "vagin", "anus",
-
-        // anglicismes
-        "fuck", "shit", "bitch", "dick", "pussy", "cum", "suck", "whore", "fucking", "asshole", "bastard",
-
-        // haine / racisme
-        "raciste", "nazi", "hitler", "heil", "negre", "bougnoule", "raton", "youpin", "pede", "pd", "enculedetarace", "salearabe", "salenoir",
-
-        // variantes
-        "tarace", "vamourir", "niqueta", "niqueton", "suce", "baise", "salopard", "filsde", "tgm", "sacafoutre"
+        "con", 
     ];
 
     if (TamaName === '') {
@@ -206,6 +191,18 @@ wakeUpBtn.addEventListener('click', () => {
 const MUSIC_VOLUME = 0.1;
 const SINGING_VOLUME = 0.1;
 
+function stopSound() {
+    const sound = music;
+    const sound1 = singing;
+
+    if (sound && sound1) {
+        sound.pause();
+        sound.currentTime = 0;
+        sound1.pause();
+        sound1.currentTime = 0;
+    }    
+}
+
 function jouerMusique() {
     if (!music.paused) {
         music.currentTime = 0;
@@ -247,12 +244,15 @@ function jouerSinging() {
 // Événements des boutons
 carotteImg.addEventListener("click", () => {
     effectuerActivité(carotte, 'image/eating.jpg', 'mange');
+    stopSound();
 });
 grainesImg.addEventListener("click", () => {
     effectuerActivité(graines, 'image/eating.jpg', 'mange');
+    stopSound();
 });
 bookImg.addEventListener("click", () => {
     effectuerActivité(book, 'image/reading.jpg', 'lit');
+    stopSound();
 });
 singImg.addEventListener("click", () => {
     effectuerActivité(sing, 'image/singing.jpg', 'chante');
@@ -260,8 +260,10 @@ singImg.addEventListener("click", () => {
 });
 sleepImg.addEventListener("click", () => {
     effectuerActivité(sleep, 'image/sleeping.jpg', 'dort');
+    stopSound();
 });
 sportImg.addEventListener("click", () => {
     effectuerActivité(sport, 'image/sport.jpg', 'fait du sport');
+    stopSound();
 });
 
