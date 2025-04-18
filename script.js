@@ -97,6 +97,7 @@ validate.addEventListener('click', (event) => {
         // insultes directes
         "con", "connard", "connasse", "encule", "enculé", "salope", "pute", "putain", "merde", "bordel", "batard", "salaud",
         "sacamerde", "fdp", "ntm", "nique", "niquetamere", "tagueule", "tg", "chie", "chier", "chiant", "branleur", "branleuse",
+        "caca", "pipi", "cul",
 
         // insultes sexuelles / organes
         "bite", "bitte", "chatte", "couille", "nichon", "seins", "teub", "zboub", "zizi", "penis", "vagin", "anus",
@@ -202,7 +203,6 @@ wakeUpBtn.addEventListener('click', () => {
 });
 
 // Musique 
-
 const MUSIC_VOLUME = 0.1;
 const SINGING_VOLUME = 0.1;
 
@@ -241,7 +241,7 @@ function jouerSinging() {
     setTimeout(() => {
         singing.pause();
         singing.currentTime = 0;
-    }, 50000); //                                   <<<<<<<<<<<<<<<<<<<<<<<<< Timer de la musique de chant
+    }, 40000); //                                   <<<<<<<<<<<<<<<<<<<<<<<<< Timer de la musique de chant
 }
 
 // Événements des boutons

@@ -9,6 +9,8 @@ Ce projet met en œuvre les principes de programmation orientée objet, la manip
 👉 Jouer à MyTamagotchi 
 https://quentin384.github.io/MyTamagochi/
 
+---
+
 📖 Règles du jeu
 
 Vous êtes responsable du bien-être de votre Tamagotchi. Il a trois besoins principaux :
@@ -31,6 +33,8 @@ Si un des niveaux atteint zéro… votre Tamagotchi meurt 😢. Prenez soin de l
 
 📘 Les règles sont également accessibles à tout moment via le bouton Règles dans l'interface du jeu.
 
+---
+
 🧠 Fonctionnalités
 
 Interface simple, claire et responsive
@@ -43,6 +47,8 @@ Sauvegarde automatique de l'état dans localStorage
 
 Rejouabilité illimitée
 
+---
+
 ⚙️ Aspects techniques
 
 ✅ Projet réalisé en HTML, CSS et JavaScript natif
@@ -52,6 +58,8 @@ Rejouabilité illimitée
 ✅ Code DRY, commenté, lisible et bien structuré
 ✅ Déployé avec Github Pages 
 ✅ Anti-triche : les valeurs ne peuvent pas être manipulées directement depuis l'interface
+
+---
 
 
 🚀 Technologies utilisées
@@ -63,6 +71,8 @@ DOM API
 Git / Github
 
 Déploiement via Github Pages
+
+---
 
 📣 Pitch de présentation (3 minutes)
 
