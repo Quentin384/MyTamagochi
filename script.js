@@ -168,6 +168,10 @@ wakeUpBtn.addEventListener('click', () => {
 });
 
 // Musique 
+
+const MUSIC_VOLUME = 0.1;
+const SINGING_VOLUME = 0.1;
+
 function jouerMusique() {
     if (!music.paused) {
         music.currentTime = 0;
@@ -177,7 +181,14 @@ function jouerMusique() {
     singing.pause();
     singing.currentTime = 0;
 
+    music.volume = MUSIC_VOLUME;
     music.play();
+
+    // Stop après 120 secondes
+    setTimeout(() => {
+        music.pause();
+        music.currentTime = 0;
+    }, 120000);
 }
 
 function jouerSinging() {
@@ -189,7 +200,14 @@ function jouerSinging() {
         return;
     }
 
+    singing.volume = SINGING_VOLUME;
     singing.play();
+
+    // Stop après 50 secondes
+    setTimeout(() => {
+        singing.pause();
+        singing.currentTime = 0;
+    }, 50000);
 }
 
 // Événements des boutons
