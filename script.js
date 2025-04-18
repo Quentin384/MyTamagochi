@@ -83,8 +83,25 @@ validate.addEventListener('click', (event) => {
     userInput.value = '';
 
     // Liste des mots interdits
-    const motsInterdits = ["con", "merde", "pute", "enculé", "salope", "batard", "fdp", "ta gueule", "nique", "bite", "chatte"];
 
+    const motsInterdits = [
+        // insultes directes
+        "con", "connard", "connasse", "enculé", "encule", "salope", "pute", "putain", "merde", "bordel", "batard", "bâtard", "salaud",
+        "sac à merde", "fdp", "ntm", "nique", "nique ta mère", "ta gueule", "tg", "chié", "chier", "chiant", "branleur", "branleuse",
+        
+        // insultes sexuelles / organes
+        "bite", "bitte", "chatte", "couille", "couilles", "nichon", "nichons", "seins", "teub", "zboub", "zizi", "pénis", "vagin", "anus",
+        
+        // anglicismes / internet
+        "fuck", "fucking", "shit", "asshole", "bitch", "bastard", "dick", "pussy", "cum", "suck", "whore",
+    
+        // racisme / haine (basiquement à filtrer aussi)
+        "raciste", "nazi", "hitler", "heil", "nègre", "bougnoule", "raton", "youpin", "pédé", "pd", "enculé de ta race", "sale arabe", "sale noir",
+    
+        // variantes courantes
+        "ta race", "va mourir", "nique ta", "nique le", "nique ton", "suce", "baise", "salopard", "fils de", "fdp", "tg", "tgm", "sac à foutre"
+    ];
+    
     const nomEnMinuscule = TamaName.toLowerCase();
     if (motsInterdits.some(mot => nomEnMinuscule.includes(mot))) {
      alert("Ce nom n'est pas autorisé. Choisissez un nom plus approprié.");
