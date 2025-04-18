@@ -82,6 +82,15 @@ validate.addEventListener('click', (event) => {
     const TamaName = userInput.value.trim();
     userInput.value = '';
 
+    // Liste des mots interdits
+    const motsInterdits = ["con", "merde", "pute", "enculé", "salope", "batard", "fdp", "ta gueule", "nique", "bite", "chatte"];
+
+    const nomEnMinuscule = TamaName.toLowerCase();
+    if (motsInterdits.some(mot => nomEnMinuscule.includes(mot))) {
+     alert("Ce nom n'est pas autorisé. Choisissez un nom plus approprié.");
+        return;
+    }
+
     if (TamaName === '') {
         alert("Veuillez entrer un nom pour votre Tamagotchi.");
         return;
@@ -188,7 +197,7 @@ function jouerMusique() {
     setTimeout(() => {
         music.pause();
         music.currentTime = 0;
-    }, 120000);
+    }, 120000); //                                     <<<<<<<<<<<<<<<<<<<<<< Timer de la musique d'ambiance
 }
 
 function jouerSinging() {
@@ -207,7 +216,7 @@ function jouerSinging() {
     setTimeout(() => {
         singing.pause();
         singing.currentTime = 0;
-    }, 50000);
+    }, 50000); //                                   <<<<<<<<<<<<<<<<<<<<<<<<< Timer de la musique de chant
 }
 
 // Événements des boutons
